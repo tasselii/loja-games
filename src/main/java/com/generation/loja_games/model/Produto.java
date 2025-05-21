@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.URL;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -50,6 +51,7 @@ public class Produto {
     @Column(length = 1000)
     @NotBlank(message = "O atributo imagem é obrigatório")
     @Size(min = 10, max = 1000, message = "O link da imagem deve ter no mínimo 10 e no máximo 1000 caracteres")
+    @URL(message = "O atributo 'imagem' deve conter uma URL válida")
     private String imagem;
 	
 	@UpdateTimestamp

@@ -26,10 +26,10 @@ public class Categoria {
 	
 	@Column(length = 255)
 	@NotBlank(message = "O titulo é obrigatório")
-	@Size(min = 5, max = 255, message = "O atributo titulo deve ter no minimo 10 e no máximo 255 caracteres")
+	@Size(min = 3, max = 255, message = "O atributo titulo deve ter no minimo 10 e no máximo 255 caracteres")
 	private String titulo;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tema", cascade = CascadeType.REMOVE)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("categoria")
 	private List<Produto> produto;
 
