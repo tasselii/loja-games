@@ -13,6 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
@@ -22,7 +23,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "tb_produtos") // CREAT TABLE tb_postagens();
+@Table(name = "tb_produtos") // CREAT TABLE tb_produtos();
 public class Produto {
 
 	@Id
@@ -58,8 +59,15 @@ public class Produto {
 	private LocalDateTime data;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("produto")
+	@JsonIgnoreProperties("produto") 
 	private Categoria categoria;
+
+	@ManyToOne
+    @JoinColumn(name = "usuario_id") 
+	@JsonIgnoreProperties("categoria") 
+    private Usuario usuario; 
+
+	// Getters e Setters
 
 	public Long getId() {
 		return id;
@@ -109,12 +117,22 @@ public class Produto {
 		this.data = data;
 	}
 
+	// Getter e Setter para Categoria
 	public Categoria getCategoria() {
 		return categoria;
 	}
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	// Getter e Setter para Usuario
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 }

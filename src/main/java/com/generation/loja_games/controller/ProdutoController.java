@@ -68,14 +68,12 @@ public class ProdutoController {
 
     @PostMapping
     public ResponseEntity<Produto> post(@Valid @RequestBody Produto produto) {
-        // Verifique se a categoria existe usando o categoriaRepository
         if (produto.getCategoria() == null || !categoriaRepository.existsById(produto.getCategoria().getId())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O tema não existe", null);
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto));
     }
-
 
 	@PutMapping
 	public ResponseEntity<Produto> put(@Valid @RequestBody Produto produto) {
